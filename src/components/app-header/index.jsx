@@ -29,9 +29,9 @@ const AppHeader = memo(() => {
     <HeaderWrapper>
       <div className='content wrapper01'>
         <HeaderLeft>
-          <h1 className='logo sprite_01'>
-            <a href="/">网易云音乐</a>
-          </h1>
+          <a href="/" className='logo sprite_01'>
+            <h1 >网易云音乐</h1>
+          </a>
           <ul className='list'>
             {
               header_title.map((item) => {

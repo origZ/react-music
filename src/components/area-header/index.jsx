@@ -10,7 +10,7 @@ const AreaHeader = memo((props) => {
         <h4 className="title">{title}</h4>
         <div className='keywords'>
             {
-              keywords.map((item) => {
+              keywords?.map((item) => {
                 return (
                   <div className="item" key={item}>
                     <span className='link'>{item}</span>

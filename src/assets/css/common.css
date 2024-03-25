@@ -52,3 +52,8 @@
   background: url(../img/playlist_sprite.png) no-repeat 0 9999px;
 }
 
+.textNowrap{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

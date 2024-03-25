@@ -14,3 +14,9 @@ export function getHotRecommends(limit = 30) {
     }
   })
 }
+
+export function getNewAlbums() {
+  return WyyRequest.get({
+    url: '/album/newest',
+  })
+}
