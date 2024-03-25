@@ -1,16 +1,18 @@
 import React, { memo, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { fetchRecommendData } from './store/recommend'
+import { fetchRecommendData, fetchRankingData} from './store/recommend'
 import TopBanner from './c-cpns/top-banner/inedx'
 import { RecommendWrapper } from './style'
 import HotRecommend from './c-cpns/hot-recommend'
 import NewAlbum from './c-cpns/new-album'
+import TopRanking from './c-cpns/ranking'
 
 const Recommend = memo(() => {
   const dispatch = useDispatch()
-  // 请求轮播图数据
+  // 请求数据
   useEffect(() => {
     dispatch(fetchRecommendData())
+    dispatch(fetchRankingData())
   }, [dispatch])
   return (
     <RecommendWrapper>
@@ -19,6 +21,7 @@ const Recommend = memo(() => {
         <div className="left">
           <HotRecommend/>
           <NewAlbum/>
+          <TopRanking/>
         </div>
         <div className="right">right</div>
       </div>

@@ -20,3 +20,12 @@ export function getNewAlbums() {
     url: '/album/newest',
   })
 }
+
+export function getRankings(id) {
+  return WyyRequest.get({
+    url: '/playlist/detail',
+    params: {
+      id
+    }
+  })
+}

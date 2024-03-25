@@ -1,13 +1,13 @@
 import React, { memo } from 'react'
 import { HotWrapper } from './styled'
 import AreaHeader from '@/components/area-header'
-import { useSelector } from 'react-redux'
+import { shallowEqual, useSelector } from 'react-redux'
 import SongsItem from '@/components/songs-item/inedx'
 
 const HotRecommend = memo(() => {
   const { hotRecommends } = useSelector((state) => ({
     hotRecommends: state.recommend.hotRecommends
-  }))
+  }), shallowEqual)
   return (
     <HotWrapper>
       <AreaHeader 

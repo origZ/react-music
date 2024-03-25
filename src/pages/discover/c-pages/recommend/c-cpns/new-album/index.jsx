@@ -2,13 +2,13 @@ import React, { memo, useRef } from 'react'
 import { Carousel } from 'antd'
 import { NewAlbumWrapper } from './style'
 import AreaHeader from '@/components/area-header'
-import { useSelector } from 'react-redux'
+import { shallowEqual, useSelector } from 'react-redux'
 import AlbumItem from '@/components/album-item'
 
 const NewAlbum = memo(() => {
   const { albums } = useSelector((state) => ({
     albums: state.recommend.newAlbums
-  }))
+  }), shallowEqual)
   const newAlbumRef = useRef()
 
   const handlePre = () => {
