@@ -88,7 +88,7 @@ export const RankingItemWrapper = styled.div`
         padding-left: 10px;
         width: 160px;
         height: 17px;
-        
+        font-size: 14px;
 
         &:hover {
           .indicator {
@@ -148,5 +148,6 @@ export const RankingItemWrapper = styled.div`
     align-items: center;
     padding-right: 20px;
     height: 32px;
+    font-size: 14px;
   }
 `

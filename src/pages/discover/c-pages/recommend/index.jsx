@@ -6,6 +6,9 @@ import { RecommendWrapper } from './style'
 import HotRecommend from './c-cpns/hot-recommend'
 import NewAlbum from './c-cpns/new-album'
 import TopRanking from './c-cpns/ranking'
+import UserLogin from './c-cpns/user-login'
+import ResidentArtist from './c-cpns/resident-artist'
+import Anchor from './c-cpns/anchor'
 
 const Recommend = memo(() => {
   const dispatch = useDispatch()
@@ -23,7 +26,11 @@ const Recommend = memo(() => {
           <NewAlbum/>
           <TopRanking/>
         </div>
-        <div className="right">right</div>
+        <div className="right">
+          <UserLogin/>
+          <ResidentArtist/>
+          <Anchor/>
+        </div>
       </div>
     </RecommendWrapper>
   )

@@ -29,3 +29,12 @@ export function getRankings(id) {
     }
   })
 }
+
+export function getArtistList(limit = 30) {
+  return WyyRequest.get({
+    url: '/artist/list',
+    params: {
+      limit
+    }
+  })
+}
