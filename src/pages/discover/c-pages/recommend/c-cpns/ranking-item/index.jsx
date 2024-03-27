@@ -1,9 +1,16 @@
 import React, { memo } from 'react'
 import { RankingItemWrapper } from './style'
 import { formatImageUrl } from "@/utils/format";
+import { useDispatch } from 'react-redux';
+import { fetchCurrentSongAction } from '@/pages/player/store/player';
 const RankingItem = memo((props) => {
   const {itemData} = props
   const { tracks = [] } = itemData
+  const dispatch = useDispatch()
+  function handelPlayClick(id) {
+    dispatch(fetchCurrentSongAction(id))
+  }
+
   return (
     <RankingItemWrapper>
       <div className='top'>
@@ -28,7 +35,7 @@ const RankingItem = memo((props) => {
                 <div className="info">
                   <div className="name textNowrap">{item.name}</div>
                   <div className="indicator">
-                    <button className='btn sprite_02 play'></button>
+                    <button className='btn sprite_02 play' onClick={() => handelPlayClick(item.id)}></button>
                     <button className='btn sprite_icon2 add'></button>
                     <button className='btn sprite_02 favor'></button>
                   </div>

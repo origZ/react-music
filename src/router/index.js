@@ -1,3 +1,4 @@
+import Player from "@/pages/player"
 import React, { lazy } from "react"
 import { Navigate } from "react-router-dom"
 const Discover = lazy(() => import('@/pages/discover'))
@@ -63,6 +64,10 @@ const routes = [
   {
     path: '/download',
     element: <Download/>
+  },
+  {
+    path: '/player',
+    element: <Player/>
   },
 ]
 

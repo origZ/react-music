@@ -16,7 +16,7 @@ export const fetchRankingData = createAsyncThunk('rankdata', (arg, {dispatch}) =
     rankinglist.push(getRankings(id))
   }
   Promise.all(rankinglist).then((res) => {
-    const playlists = res.map((item) => item.playlist)
+    const playlists = res.filter((item) => item.playlist).map((item) => item.playlist)
     dispatch(changeRankings(playlists))
   })
 })

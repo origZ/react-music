@@ -3,6 +3,7 @@ import { useRoutes } from 'react-router-dom'
 import routes from './router'
 import AppHeader from './components/app-header'
 import AppFooter from './components/app-footer'
+import PlayBar from './pages/player/play-bar'
 
 const App = memo(() => {
   return (
@@ -12,6 +13,7 @@ const App = memo(() => {
         {useRoutes(routes)}
       </Suspense>
       <AppFooter/>
+      <PlayBar/>
     </div>
   )
 })
