@@ -2,8 +2,9 @@ import React, { memo, useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Control, Operator, PlayBarWrapper, PlayInfo } from './style'
 import { Slider } from 'antd'
-import { shallowEqual, useSelector } from 'react-redux'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { formatImageUrl, formatTime, getSongPlayUrl} from '@/utils/format'
+import { changePlayModeAction, fetchChangeMusicAction } from '../store/player'
 
 const PlayBar = memo(() => {
   // 记录内部状态
@@ -12,6 +13,8 @@ const PlayBar = memo(() => {
   const [duration, setDuration] = useState(0)  // 播放总时长
   const [currentTime, setCurrentTime] = useState(0)  // 当前播放时间
   const [isSliding, setIsSliding] = useState(false)  // 记录滑动状态
+
+  const dispatch = useDispatch()
 
   // 获取audio元素
   const audioRef = useRef()
@@ -74,13 +77,33 @@ const PlayBar = memo(() => {
     setIsSliding(false)
   }
 
+  // 控制上一曲/下一曲
+  function handleChangeMusic(isNext = true) {
+    dispatch(fetchChangeMusicAction(isNext))
+  }
+  // 控制播放模式
+  function handlePlayMode() {
+    let newPlayMode = playMode + 1
+    if (newPlayMode > 2) newPlayMode = 0
+    dispatch(changePlayModeAction(newPlayMode))
+  }
+  // 音乐结束的处理
+  function handleTimeEnded() {
+    if (playMode === 2) {
+      audioRef.current.currentTime = 0
+      audioRef.current.play()
+    }else {
+      handleChangeMusic()
+    }
+  }
+
   return (
     <PlayBarWrapper className="sprite_playbar">
       <div className="content wrapper02">
         <Control isPlaying={isPlaying}>
-          <button className="sprite_playbar btn prev"></button>
+          <button className="sprite_playbar btn prev" onClick={()=>handleChangeMusic(false)}></button>
           <button className="sprite_playbar btn play" onClick={handlePlayClick}></button>
-          <button className="sprite_playbar btn next"></button>
+          <button className="sprite_playbar btn next" onClick={()=>handleChangeMusic()}></button>
         </Control>
         <PlayInfo>
           <div className="image">
@@ -115,12 +138,12 @@ const PlayBar = memo(() => {
           </div>
           <div className="right sprite_playbar">
             <button className="sprite_playbar btn volume"></button>
-            <button className="sprite_playbar btn palymode"></button>
+            <button className="sprite_playbar btn playmode" onClick={handlePlayMode}></button>
             <button className="sprite_playbar btn playlist"></button>
           </div>
         </Operator>
       </div>
-      <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} />
+      <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} onEnded={handleTimeEnded}/>
     </PlayBarWrapper>
   )
 })

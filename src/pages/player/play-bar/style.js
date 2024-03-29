@@ -155,7 +155,7 @@ export const Operator = styled.div`
       background-position: -2px -248px;
     }
 
-    .loop {
+    .playmode {
       background-position: ${props => {
         switch(props.playMode) {
           case 1:
