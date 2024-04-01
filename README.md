@@ -1,1 +1,1 @@
-这是一个用来练习react的项目,来自于coderwhy老师
+A music project based on react
